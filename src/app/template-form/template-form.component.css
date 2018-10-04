@@ -1,0 +1,5 @@
+/*Obtém o status de validação do formulário e muda o CSS
+.ng-invalid.ng-touched:not(form) {
+  border: 1px solid red;
+}
+*/
