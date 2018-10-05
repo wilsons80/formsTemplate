@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import 'rxjs/add/operator/map';
 import {Http} from "@angular/http";
+import {DropdownService} from "../shared/services/dropdown.service";
+import {Estadobr} from "../shared/models/estadobr";
 
 @Component({
   selector: 'app-data-form',
@@ -11,13 +13,20 @@ import {Http} from "@angular/http";
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
+  estados: Estadobr[];
 
   constructor(private formBuilder: FormBuilder,
-              private http: Http) {
+              private http: Http,
+              private dropdown: DropdownService) {
 
   }
 
   ngOnInit() {
+
+    this.dropdown.getEstadosBr().subscribe(dados => {
+      this.estados = dados;
+    });
+
     /*
     //Como criar um FormGroup sem usar FormBuilder
     this.formulario = new FormGroup({
